@@ -1,0 +1,10 @@
+torch==2.6.0+cu124
+torchvision==0.21.0+cu124
+numpy==1.26.0
+scipy==1.13.0
+scikit-learn==1.7.1
+gensim==4.3.3
+tqdm==4.67.1
+sentence-transformers==5.1.1
+topmost==1.0.2
+openai==2.36.0
