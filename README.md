@@ -50,7 +50,7 @@ Set one or more API keys before running with LLM refinement enabled:
 
 ```python
 import os
-os.environ["GOOGLE_API_KEYS"] = "your_key_1,your_key_2,your_key_3"
+os.environ["KROUTER_API_KEYS"] = "your_key_1,your_key_2,your_key_3"
 ```
 
 ## Quick Start
