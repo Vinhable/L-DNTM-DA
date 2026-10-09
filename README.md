@@ -1,10 +1,10 @@
-# LDAR-DTM: Language Model-Guided Dual Alignment and Refinement for Dynamic Topic Models
+# L-DNTM-DA: Semantic and Temporal Alignment with Metric-Space Refinement for Dynamic Topic Modeling
 
 Anonymous submission for dynamic topic modeling research.
 
 ## Overview
 
-LDAR-DTM is a variational dynamic topic model for time-stamped document collections. It extends the CFDTM-style dynamic topic modeling backbone with two semantic grounding mechanisms:
+L-DNTM-DA is a variational dynamic topic model for time-stamped document collections. It extends the CFDTM-style dynamic topic modeling backbone with two semantic grounding mechanisms:
 
 1. **LLM-guided topic-word refinement.** During training, a large language model scores candidate topic words using the topic's recent temporal history. The model maps each LLM score to a target cosine similarity and directly refines the metric geometry between topic embeddings and word embeddings.
 2. **PLM-based dual alignment.** A frozen pre-trained language model (PLM) guides both document-topic inference and topic evolution:
@@ -65,7 +65,7 @@ This will:
 
 1. Generate PLM document embeddings with `all-mpnet-base-v2` and save `train_doc_emb.npy` and `test_doc_emb.npy` into the dataset directory.
 2. Load the dynamic dataset, including BoW vectors, time indices, labels, vocabulary, word embeddings, and document embeddings.
-3. Train `LDAR_DTM` with reconstruction, KL, ETC, UWE, document-topic alignment, evolution alignment, and LLM-guided refinement.
+3. Train `L_DNTM_DA` with reconstruction, KL, ETC, UWE, document-topic alignment, evolution alignment, and LLM-guided refinement.
 4. Periodically refresh PLM topic embeddings for alignment.
 5. After the LLM warm-up epoch, periodically query KRouter for topic-word guidance if `lambda_contrastive > 0`.
 6. Save final top words to `top_words.txt`.
@@ -150,7 +150,9 @@ def evaluate_model(...):
 All hyperparameters are currently configured directly in `main.py`.
 
 ```python
-model = LDAR_DTM(
+from model.L_DNTM_DA import L_DNTM_DA
+
+model = L_DNTM_DA(
     # --- Core model and dataset parameters ---
     vocab_size=dataset.vocab_size,
     num_times=dataset.num_times,

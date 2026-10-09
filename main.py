@@ -5,7 +5,7 @@ from sentence_transformers import SentenceTransformer
 from data.dynamic_dataset import DynamicDataset
 from data.download import download_dataset
 from trainer.trainer import DynamicTrainer
-from model.LDAR_DTM import LDAR_DTM
+from model.L_DNTM_DA import L_DNTM_DA
 from eva.topic_coherence import dynamic_coherence
 from eva.topic_diversity import dynamic_diversity
 from eva.clustering import _clustering, purity_score
@@ -16,7 +16,7 @@ from eva.custom_coherence import apply_custom_coherence_patch
 
 def main():
     """
-    Main function to train L-DNTM and evaluate its performance.
+    Main function to train L-DNTM-DA and evaluate its performance.
     """
     # Apply custom coherence patch
     apply_custom_coherence_patch() #fix TC nan in gensim
@@ -61,8 +61,8 @@ def main():
     dataset = DynamicDataset(dataset_dir, batch_size=200, read_labels=True, device=device)
     
     # Initialize model
-    print("Initializing LDAR_DTM...")
-    model = LDAR_DTM(
+    print("Initializing L-DNTM-DA...")
+    model = L_DNTM_DA(
         vocab_size=dataset.vocab_size,
         num_times=dataset.num_times,
         num_topics=50,

@@ -31,7 +31,9 @@ class CKALoss(nn.Module):
         
         return 1 - num/torch.sqrt(den1*den2)
 
-class LDAR_DTM(nn.Module):
+class L_DNTM_DA(nn.Module):
+    """L-DNTM-DA: semantic and temporal alignment with metric-space refinement."""
+
     def __init__(self,
                  vocab_size, num_times, num_topics, train_time_wordfreq,
                  word_embeddings, en_units, dropout, beta_temp,
